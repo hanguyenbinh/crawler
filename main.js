@@ -5,7 +5,7 @@ const data = [];
 const products = require('./products.json');
 const { resolve } = require("path");
 
-const startIndex = 0;
+const startIndex = 20;
 
 const main = async()=>{
 
