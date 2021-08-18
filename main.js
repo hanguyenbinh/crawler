@@ -5,7 +5,7 @@ const data = [];
 const products = require('./products.json');
 const { resolve } = require("path");
 
-const startIndex = 20;
+const startIndex = 0;
 
 const main = async()=>{
 
@@ -29,7 +29,8 @@ const main = async()=>{
         console.log(productDetails)
         const images = productDetails.images;
         fs.mkdirSync('./images/' + pId, { recursive: true });
-        fs.writeFileSync(i + '-' + pId + '.json', JSON.stringify(productDetails), 'utf8');
+        fs.mkdirSync('./products', { recursive: true });
+        fs.writeFileSync('./products/' + i + '-' + pId + '.json', JSON.stringify(productDetails), 'utf8');
         images && images.forEach(img => {
             if (img.base_url) jobs.push(download(img.base_url, './images/' + pId + '/base_url.jpg'));
             if (img.large_url) jobs.push(download(img.large_url, './images/' + pId + '/large_url.jpg'));
