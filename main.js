@@ -3,8 +3,8 @@ const fs = require('fs')
 const start = 0;
 const data = [];
 const products = require('./products.json');
-
-const startIndex = 0;
+const status = require('./status.json');
+const startIndex = status ? status.startIndex:0;
 
 const main = async()=>{
 
@@ -39,6 +39,7 @@ const main = async()=>{
         });
         if (productDetails.video_url) jobs.push(download(productDetails.video_url, './images/' + pId + '/video_url.mp4'));
         await Promise.all(jobs);
+        fs.writeFileSync('./status.json', JSON.stringify({startIndex: i + 1}, 'utf8'));
     }
 }
 
